@@ -1,5 +1,5 @@
 /*
- * SFExecuteOnDealloc for iOS: http://merowing.info
+ * NSObject+SFExecuteOnDealloc for cocos2d: http://merowing.info
  *
  * Copyright (c) 2012 Krzysztof Zabłocki
  *
@@ -22,13 +22,3 @@
  * THE SOFTWARE.
  *
  */
-
-SFExecuteOnDealloc is a simple category on NSObject that allows you to execute arbitrary blocks when object gets dealloced. Keep in mind that order of execution is random when you add multiple blocks.
-
-Useful for debugging and advanced categories.
-
-How to use:
-    __block NSObject *weakSelf = someTestObject;
-    [someTestObject performBlockOnDealloc:^{
-      NSLog(@"this is block for object %@", weakSelf);
-    }];
