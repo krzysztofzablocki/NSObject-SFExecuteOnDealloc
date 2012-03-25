@@ -29,9 +29,9 @@
 {
   if (block) {
     block();
-    [block release];
+    AH_RELEASE(block);
   }
-  [super dealloc];
+  AH_SUPER_DEALLOC;
 }
 @end
 
@@ -45,7 +45,7 @@
   //! we need some object that will be deallocated with this one, and since we are only assigning and never again needing access to this object, let use its memory adress as key
   SFExecuteOnDeallocInternalObject *internalObject = [[SFExecuteOnDeallocInternalObject alloc] initWithBlock:aBlock];
   objc_setAssociatedObject(self, internalObject, internalObject, OBJC_ASSOCIATION_RETAIN);
-  [internalObject release];
+  AH_RELEASE(internalObject);
 }
 
 @end
