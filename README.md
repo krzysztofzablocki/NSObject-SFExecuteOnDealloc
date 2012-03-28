@@ -23,8 +23,12 @@ Preferably include NSObject+SFExecuteOnDealloc.h in your Prefix.pch file.
 Methods
 --------------
 
-    - (void)performBlockOnDealloc:(void(^)(void))aBlock;
-Will call selected block when an object is deallocated.
+    - (void*)performBlockOnDealloc:(void(^)(void))aBlock;
+Will call selected block when an object is deallocated. Returns blockKey that can be used to cancel selected block.
+
+
+    - (void)cancelDeallocBlockWithKey:(void*)blockKey;
+Cancels selected block from executing when object is deallocated.
 
 Sample use
 --------------
