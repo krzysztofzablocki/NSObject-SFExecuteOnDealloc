@@ -50,7 +50,7 @@
 {
   //! we need some object that will be deallocated with this one, and since we are only assigning and never again needing access to this object, let use its memory adress as key
   SFExecuteOnDeallocInternalObject *internalObject = [[SFExecuteOnDeallocInternalObject alloc] initWithBlock:aBlock];
-  objc_setAssociatedObject(self, AH_BRIDGE(internalObject), internalObject, OBJC_ASSOCIATION_RETAIN);
+  objc_setAssociatedObject(self, AH_BRIDGE(internalObject), internalObject, OBJC_ASSOCIATION_ASSIGN);
   AH_RELEASE(internalObject);
   return AH_BRIDGE(internalObject);
 }
@@ -61,7 +61,7 @@
 #endif
 {
   //! first cleanup the associated block
-  SFExecuteOnDeallocInternalObject *internalObject = objc_getAssociatedObject(self, AH_BRIDGE(blockKey));
+  SFExecuteOnDeallocInternalObject *internalObject = objc_getAssociatedObject(self, blockKey);
   internalObject.block = nil;
 
   //! release internal object

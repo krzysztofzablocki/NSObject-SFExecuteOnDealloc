@@ -13,15 +13,10 @@
 
 @synthesize window = _window;
 
-- (void)dealloc
-{
-  [_window release];
-  [super dealloc];
-}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-  self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+  self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
   
   NSObject *someTestObject = [[NSObject alloc] init];
   for (int i=0; i < 10; ++i) {
@@ -30,7 +25,6 @@
       NSLog(@"this is block for object %@ number %d", weakSelf,  i);
     }];
   }
-  [someTestObject release];
    
   
   // Override point for customization after application launch.
